@@ -204,188 +204,36 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
      # neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    # Prolangs
+    pkgs.lua
+    pkgs.python312Packages.pip
+    pkgs.python312
+    pkgs.python310
+    pkgs.python311
+    pkgs.python312Full
+    pkgs.python313
+    pkgs.nodejs_22
+    pkgs.go
     
-     pkgs.lua
-     pkgs.gcc
-     pkgs.xclip
-     pkgs.unzip
-     pkgs.pkg-config
-     pkgs.cairo
-     pkgs.cmake
+    # Package manager
+    pkgs.devbox
 
+    # Networing
+    pkgs.openvpn
+    pkgs.openresolv
 
-     pkgs.wget
+    pkgs.zsh
+    pkgs.bash
 
-     pkgs.alacritty
-     pkgs.kitty
-     pkgs.zellij
-     pkgs.wezterm
-     pkgs.git
-     pkgs.tokei
-     pkgs.stow
-     pkgs.libfido2
-     pkgs.eza
-     pkgs.tree
-     pkgs.umoci
-
-     pkgs.dig
-     pkgs.netcat
-
-     pkgs.brave
-     pkgs.mesa
-     
-     pkgs.zsh
-
-     pkgs.neofetch
-     pkgs.atuin
-
-     pkgs.podman
-     pkgs.dive # look into docker image layers
-     pkgs.podman-tui # status of containers in the terminal
-     pkgs.podman-compose # start group of containers for dev
-     pkgs.podman-desktop 
-
-     pkgs.python310Full
-     pkgs.python311
-     pkgs.python312Full
-     pkgs.python313
-     pkgs.go
-     pkgs.ruby
-
-     pkgs.k9s
-     pkgs.kubectl-cnpg
-     pkgs.kustomize
-     pkgs.kubie
-     pkgs.kubectl
-     pkgs.kubernetes-helm
-     pkgs.argo
-     pkgs.argocd
-     pkgs.teller
-     pkgs.buildkit
-
-     pkgs.kcl
-     pkgs.cmctl # cert-manager cli
-     pkgs.s3cmd
-
-     pkgs.opentofu
-     pkgs.terraform
-
-     pkgs.pass
-     pkgs.teller
-     pkgs.vault
-
-     pkgs.stackit-cli
-
-     pkgs.httpie
-
-     pkgs.dbt
-
-
-     pkgs.direnv
-     pkgs.jq
-     pkgs.yq
-     pkgs.gh
-     pkgs.btop
-     pkgs.bat
-     pkgs.ripgrep
-     pkgs.fzf
-     pkgs.fd
-     pkgs.mdcat
-     pkgs.awscli2
-     pkgs.fortune
-     pkgs.bash
-
-     pkgs.pnpm
-     pkgs.vite
-     pkgs.nodejs_22
-
-	
-     pkgs.pipx
-     pkgs.uv
-     pkgs.poetry
-     pkgs.python312Packages.pip
-     pkgs.python312
-
-     pkgs.ruff
-     pkgs.pyright
-     pkgs.biome
-     pkgs.gopls
-	
-     # Database management stuff
-     # pkgs.atlas
-     pkgs.duckdb
-     pkgs.postgresql_16
-     pkgs.sqlfluff
-     pkgs.gdal
-
-     pkgs.graphviz
-     pkgs.nsxiv
-
-     pkgs.lf
-     pkgs.cargo
-     pkgs.meson
-     pkgs.ninja
-
-     pkgs.arandr
+    # Sound and Music
+    pkgs.pipewire
     
-
-     pkgs.devbox
-     pkgs.slack
-     pkgs.spotify
-     pkgs.signal-desktop
-     pkgs.thunderbird
-     pkgs.libreoffice
-     pkgs.xournal
-     pkgs.texliveFull
-     pkgs.pandoc
-     pkgs.python312Packages.weasyprint
-
-     pkgs.ungoogled-chromium
-
-     pkgs.pipewire
-
-     pkgs.hadolint
-     pkgs.rakkess
-     pkgs.buildah
-     pkgs.skopeo
-     pkgs.buildpack
-     pkgs.kind
-
-     pkgs.trivy
-     pkgs.syft
-
-     pkgs.tektoncd-cli
-
-
-
-     # pkgs.lxc
-     # pkgs.apparmor-bin-utils
-     # pkgs.apparmor-profiles
-
-
-     pkgs.apacheHttpd
-     pkgs.openssl
-
-     pkgs.ollama
-     pkgs.vulkan-tools
-
-     pkgs.ffmpeg
-     pkgs.telegram-desktop
-
-     # pkgs.wl-clipboard-rs
-     pkgs.sxiv
-
-     pkgs.protonvpn-gui
- 
-     pkgs.openvpn
-     pkgs.openresolv
-
-     pkgs.onedrivegui
-     pkgs.onedrive
-
-     pkgs.parquet-tools
-
-
+    # Container related
+    pkgs.podman
+    pkgs.podman-compose # start group of containers for dev
+    pkgs.podman-desktop 
+    pkgs.buildkit
+    pkgs.buildah
 
 
 ];

@@ -18,23 +18,179 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    pkgs.hello
-    pkgs.cowsay
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    pkgs.lua
 
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
+    # Python related packages
+    pkgs.pipx
+    pkgs.uv
+    pkgs.poetry
+        
+    # Python LSP
+    pkgs.ruff
+    pkgs.pyright
+
+    # Data tools
+    pkgs.dbt
+    pkgs.parquet-tools
+
+
+    # JS related packages
+    pkgs.pnpm
+    pkgs.vite
+    pkgs.biome
+	
+
+    # other programming lanugages 
+    pkgs.go
+    pkgs.gopls
+
+    pkgs.ruby
+
+    # k8s related cli tools
+    pkgs.k9s
+    pkgs.kubectl-cnpg
+    pkgs.kustomize
+    pkgs.kubie
+    pkgs.kubectl
+    pkgs.kubernetes-helm
+    pkgs.argo
+    pkgs.argocd
+    pkgs.kcl
+    pkgs.cmctl
+    pkgs.kind
+  
+    
+    # Database management stuff
+    pkgs.atlas
+    pkgs.duckdb
+    pkgs.postgresql_16
+    pkgs.sqlfluff
+    pkgs.gdal
+
+    # S3 and cloud CLIs
+    pkgs.s3cmd
+    pkgs.awscli2
+    pkgs.stackit-cli
+  
+    # IaC tools
+    pkgs.opentofu
+    pkgs.terraform
+
+    # Security related tools 
+    pkgs.pass
+    pkgs.teller
+    pkgs.vault
+    pkgs.libfido2
+    pkgs.apacheHttpd
+    pkgs.openssl
+  
+    # Network related tools
+    pkgs.httpie
+    pkgs.wget
+    pkgs.dig
+    pkgs.netcat
+    pkgs.protonvpn-gui
+
+
+    # Shell and Terminal
+    pkgs.zsh
+    pkgs.kitty
+    pkgs.zellij
+    pkgs.fortune
+    
+    # Common tools
+    pkgs.neofetch
+    pkgs.atuin
+
+    pkgs.git
+    pkgs.tokei
+    pkgs.stow
+    pkgs.eza
+    pkgs.tree
+    pkgs.umoci
+    pkgs.direnv
+    pkgs.jq
+    pkgs.yq
+    pkgs.gh
+    pkgs.btop
+    pkgs.bat
+    pkgs.ripgrep
+    pkgs.fzf
+    pkgs.fd
+    pkgs.lf
+
+    # Archives
+    pkgs.xclip
+    pkgs.unzip
+
+    # Markdown readers
+    pkgs.glow
+    pkgs.mdcat
+    
+    # Image related 
+    pkgs.graphviz
+    pkgs.nsxiv
+    
+    # Screen
+    pkgs.arandr
+    
+    # Graphics tools
+    pkgs.vulkan-tools
+
+    # Browser
+    pkgs.brave
+    pkgs.ungoogled-chromium
+    
+
+    # Container and oci
+    pkgs.hadolint
+    pkgs.rakkess
+    pkgs.skopeo
+    pkgs.buildpack
+    pkgs.trivy
+    pkgs.syft
+
+    pkgs.dive # look into docker image layers
+    pkgs.podman-tui # status of containers in the terminal
+    
+    # Package manager
+    pkgs.cargo
+    pkgs.meson
+    pkgs.ninja
+
+    
+    # Sound and Music
+    pkgs.spotify
+    pkgs.ffmpeg
+    
+    # Social and Messenging
+    pkgs.slack
+    pkgs.signal-desktop
+    pkgs.telegram-desktop
+    
+    # Office
+    pkgs.thunderbird
+    pkgs.libreoffice
+    pkgs.xournal
+    pkgs.texliveFull
+    pkgs.pandoc
+    pkgs.python312Packages.weasyprint
+
+    # LLM related
+    pkgs.ollama
+
+
+
+
+
+
+
+
+
+
+
+
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
