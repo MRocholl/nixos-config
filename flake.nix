@@ -34,7 +34,13 @@
     	modules = [
         inputs.xremap-flake.nixosModules.default
         ./configuration.nix
-        inputs.home-manager.nixosModules.default
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.extraSpecialArgs = { inherit inputs; }; 
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.moritz = import ./home.nix;
+        }
 	    ];
     };
   };

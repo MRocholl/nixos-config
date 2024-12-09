@@ -5,7 +5,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
     ];
   
 
@@ -153,11 +152,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; }; 
-    users.moritz = "import ./home.nix";
-  };
-
+  
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.moritz = {
     isNormalUser = true;
