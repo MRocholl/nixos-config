@@ -4,39 +4,38 @@
   inputs = {
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     # Latest neovim
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 	
     # Add xremap flake required to map capslock to escape
     xremap-flake.url = "github:xremap/nix-flake";
 
+    # Add home-manager
+    home-manager = {
+        url = "github:nix-community/home-manager";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
   };
 
   outputs = inputs@{
     self,
     nixpkgs,
+    home-manager,
     ...
   }: {
-
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem rec {
-    	system = "x86_64-linux";
-
- 	# Set all inputs parameters as special arguments for all submodules,
-        # so you can directly use all dependencies in inputs in submodules
-        specialArgs = {
-	  inherit inputs;
-	  # pkgs-unstable = import nixpkgs-unstable {
-	  #   inherit system;
-	  #   config.allowUnfree = true;
-	  # };
-	};
-
+      system = "x86_64-linux";
+      # Set all inputs parameters as special arguments for all submodules,
+      # so you can directly use all dependencies in inputs in submodules
+      specialArgs = {
+        inherit inputs;
+	    };
     	modules = [
-
-    	inputs.xremap-flake.nixosModules.default
-	./configuration.nix
-
-	];
+        inputs.xremap-flake.nixosModules.default
+        ./configuration.nix
+        inputs.home-manager.nixosModules.default
+	    ];
     };
   };
 }
