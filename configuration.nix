@@ -234,6 +234,7 @@
 
     pkgs.zsh
     pkgs.bash
+    pkgs.carapace
 
     # Sound and Music
     pkgs.pipewire
