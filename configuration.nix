@@ -1,17 +1,28 @@
 # Edit this configuration file to define what should be installed on your system.  Help is available in the configuration.nix(5) man page and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs,  inputs, ... }:
+{ config, pkgs, pkgs-stable,  inputs, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
   
-
+  
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelParams = [
+    "mem_sleep_default=deep"
+  ];
+  services.thermald.enable = true;
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+  };
+
+
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   nix.settings = {
@@ -32,12 +43,16 @@
   networking.networkmanager.enable = true;
 
   virtualisation.containers.enable = true;
+
+
+  virtualisation.docker.enable = true;
+
   virtualisation = {
     podman = {
       enable = true;
 
-      # Create a `docker` alias for podman, to use it as a drop-in replacement
-      dockerCompat = true;
+      # # Create a `docker` alias for podman, to use it as a drop-in replacement
+      # dockerCompat = true;
 
       # Required for containers under podman-compose to be able to talk to each other.
       defaultNetwork.settings.dns_enabled = true;
@@ -52,6 +67,9 @@
   #   extraGroups = [ "lxd" ];
   # };
 
+  programs.steam = {
+    enable = true;
+  };
  
   # Start the driver at boot
   systemd.services.fprintd = {
@@ -70,14 +88,19 @@
   
   # Install the driver
   services.fprintd.enable = true;
+  # services.fprintd.package = pkgs-stable.libfprint;
   # If simply enabling fprintd is not enough, try enabling fprintd.tod...
   services.fprintd.tod.enable = true;
   # ...and use one of the next four drivers
   services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix; # Goodix driver module
  
   services.logind = {
-	extraConfig = "HandlePowerKey=suspend";  
   	lidSwitch = "suspend";
+	  extraConfig = ''
+      HandlePowerKey=suspend
+      HandleLidSwitch=suspend
+      HandleLidSwitchExternalPower=suspend
+    '';  
  };
 
   # Set your time zone.
@@ -103,9 +126,9 @@
 
   # Enable the GNOME Desktop Environment.
 
-  services.xserver.displayManager.gdm.enable = true;
+  services.displayManager.gdm.enable = true;
   
-  services.xserver.desktopManager.gnome.enable = true;
+  services.desktopManager.gnome.enable = true;
 
 
   services.xserver.displayManager.sessionCommands = ''
@@ -139,13 +162,16 @@
   };
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  # services.pulseaudio.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+
+
+
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
@@ -153,6 +179,30 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+  # services.pipewire.extraConfig.pipewire."92-scarlett" = {
+  #   "context.modules" = [
+  #     {
+  #       name = "libpipewire-module-rt";
+  #       args = {
+  #         "nice.level" = -15;
+  #         "rt.prio" = 88;
+  #         "rt.time.soft" = 200000;
+  #         "rt.time.hard" = 200000;
+  #       };
+  #       flags = [ "ifexists" "nofail" ];
+  #     }
+  #   ];
+  #   "context.properties" = {
+  #     "default.clock.rate" = 48000;
+  #     "default.clock.quantum" = 1024;
+  #     "default.clock.min-quantum" = 1024;
+  #     "default.clock.max-quantum" = 1024;
+  #   };
+  #   "stream.properties" = {
+  #     "node.latency" = "1024/48000";
+  #     "resample.quality" = 1;
+  #   };
+  # };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -163,7 +213,7 @@
     isNormalUser = true;
     description = "moritz";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -202,13 +252,14 @@
 
   programs.neovim = { 
   	enable = true;
-    	package = inputs.neovim-nightly.packages."${pkgs.system}".default;
-	defaultEditor = true;
+    package = inputs.neovim-nightly.packages."${pkgs.system}".default;
+	  defaultEditor = true;
   };
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  #
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -247,6 +298,12 @@
     pkgs.buildah
 
 
+    pkgs.lshw
+    pkgs.gnumake
+    pkgs.gcc
+    pkgs.cmake
+
+
 ];
 
   fonts.packages =  builtins.filter pkgs.lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
@@ -278,9 +335,16 @@
   hardware.bluetooth.enable = true;
   hardware.graphics = {
   	enable = true;
-	extraPackages = with pkgs; [
-	vpl-gpu-rt
+	  extraPackages = with pkgs; [
+	  vpl-gpu-rt
+    intel-media-driver
+    mesa
+
+    # EGL-specific packages
+    libglvnd  # Provides the OpenGL/EGL implementation
+    
 	];
   };
 
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; }; # Force intel-media-driver
 }

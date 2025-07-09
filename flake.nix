@@ -4,6 +4,7 @@
   inputs = {
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
     # Latest neovim
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
@@ -24,6 +25,7 @@
   outputs = inputs@{
     self,
     nixpkgs,
+    nixpkgs-stable,
     home-manager,
     hyprland,
     ...
@@ -34,6 +36,10 @@
       # so you can directly use all dependencies in inputs in submodules
       specialArgs = {
         inherit inputs;
+        pkgs-stable = import  nixpkgs-stable {
+            inherit system;
+            config.allowUnfree = true;
+          };
 	    };
     	modules = [
         inputs.xremap-flake.nixosModules.default
