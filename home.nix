@@ -79,6 +79,7 @@
     pkgs.kcl
     pkgs.cmctl
     pkgs.kind
+    pkgs.ctlptl
     pkgs.kubebuilder
   
     pkgs.vscode

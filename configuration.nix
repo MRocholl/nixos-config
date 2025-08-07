@@ -298,6 +298,8 @@
     pkgs.buildah
 
 
+    pkgs.xdg-desktop-portal-gnome
+
     pkgs.lshw
     pkgs.gnumake
     pkgs.gcc
