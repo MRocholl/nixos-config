@@ -26,6 +26,19 @@
 
     security.pam.services.sudo_local.touchIdAuth = true; 
     services.aerospace.enable = true;
+    services.sketchybar.enable = true;
+
+    homebrew= {
+      enable =true;
+
+      casks = [
+          "1password-cli"
+          {name="hammerspoon"; greedy=true;}
+
+          { name = "ghostty"; greedy = true; }
+        ];
+
+    };
 
       nixpkgs.config.allowUnfree = true;
       environment.systemPackages =
