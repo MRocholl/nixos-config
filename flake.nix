@@ -30,7 +30,9 @@
     hyprland,
     ...
   }: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem rec {
+    nixosConfigurations = {
+
+      nixos = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       # Set all inputs parameters as special arguments for all submodules,
       # so you can directly use all dependencies in inputs in submodules
@@ -53,5 +55,6 @@
         }
 	    ];
     };
+  };
   };
 }
