@@ -38,19 +38,33 @@
 
           };
           # services.aerospace.enable = true;
-          services.sketchybar.enable = true;
-          system.defaults.NSGlobalDomain._HIHideMenuBar = true;
+          # services.sketchybar.enable = true;
+          system.defaults.NSGlobalDomain._HIHideMenuBar = false;
 
           homebrew = {
             enable = true;
+            brews = [
+              "nvm"
+              "protobuf"
+              "java"
+              "fvm"
+              "dart"
+            ];
 
             taps = [
               "nikitabobko/tap"
+              "leoafarias/fvm"
+              "dart-lang/dart"
             ];
             casks = [
               "1password-cli"
               "aerospace"
-              {name="kunkun"; greedy = true; }
+              "google-cloud-sdk"
+              "sf-symbols"
+              {
+                name = "kunkun";
+                greedy = true;
+              }
 
               {
                 name = "hammerspoon";
@@ -64,21 +78,52 @@
             ];
 
           };
-          fonts.packages = [pkgs.nerd-fonts.hack];
+          fonts.packages = [
+            pkgs.nerd-fonts.hack
+            pkgs.nerd-fonts.jetbrains-mono
+          ];
 
           nixpkgs.config.allowUnfree = true;
           environment.systemPackages = [
             pkgs.neovim
 
+            pkgs.bitwarden-desktop
+            pkgs.brave
+            pkgs.helium
+            pkgs.keycastr
+
             # ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
             #
-
+            pkgs.ffmpeg
             pkgs.lua
             pkgs.nodejs_24
 
-            pkgs.hcloud
-            pkgs.shellcheck
+            pkgs.spotify
 
+            pkgs.lefthook
+            pkgs.postgresql_17
+            pkgs.pgformatter
+            pkgs.squawk
+            pkgs.sqlfluff
+
+            pkgs.tldr
+
+            pkgs.infracost
+
+            pkgs.cocoapods
+            pkgs.hcloud
+            pkgs.google-cloud-sdk
+            pkgs.shellcheck
+            pkgs.terragrunt
+            pkgs.slack
+
+            pkgs.notion-app
+
+            pkgs.gitlab-ci-ls
+            pkgs.glab
+            pkgs.cargo
+
+            pkgs.zulu
 
             pkgs.devenv
             pkgs.zoxide
@@ -114,6 +159,7 @@
 
             # JS related packages
             pkgs.pnpm
+            pkgs.bun
             pkgs.biome
 
             pkgs.mimir
@@ -148,6 +194,9 @@
 
             # Database management stuff
             # pkgs.atlas
+            pkgs.hasura-cli
+
+            pkgs.dvc
 
             # S3 and cloud CLIs
             pkgs.s3cmd
@@ -157,8 +206,10 @@
             pkgs.rclone
 
             # IaC tools
-            pkgs.opentofu
+            # pkgs.opentofu
             pkgs.terraform
+
+            pkgs.opencode
 
             # Security related tools
             pkgs.pass
@@ -194,7 +245,9 @@
             pkgs.umoci
             pkgs.direnv
             pkgs.jq
-            pkgs.yq
+            pkgs.jqp
+            pkgs.gron
+            pkgs.yq-go
             pkgs.gh
             pkgs.btop
             pkgs.bat
@@ -206,6 +259,9 @@
             pkgs.file
             pkgs.lf
 
+            pkgs.cspell
+            # pkgs.firebase-tools
+            pkgs.viu
           ];
 
           # Necessary for using flakes on this system.
@@ -230,6 +286,9 @@
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#Moritzs-MacBook-Air
       darwinConfigurations."Moritzs-MacBook-Air" = nix-darwin.lib.darwinSystem {
+        modules = [ configuration ];
+      };
+      darwinConfigurations."Moritzs-MacBook-Pro" = nix-darwin.lib.darwinSystem {
         modules = [ configuration ];
       };
     };
