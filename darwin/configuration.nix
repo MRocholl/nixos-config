@@ -16,7 +16,7 @@
 
   };
   # services.aerospace.enable = true;
-  services.sketchybar.enable = true;
+  # services.sketchybar.enable = true;
 
   homebrew = {
     enable = true;

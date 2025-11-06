@@ -5,6 +5,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    # Latest neovim
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
     ghostty = {
       url = "github:ghostty-org/ghostty";
@@ -16,6 +18,7 @@
       self,
       nix-darwin,
       nixpkgs,
+      neovim-nightly,
       ghostty,
     }:
     let
@@ -59,7 +62,7 @@
             casks = [
               "1password-cli"
               "aerospace"
-              "google-cloud-sdk"
+              "gcloud-cli"
               "sf-symbols"
               {
                 name = "kunkun";
@@ -85,17 +88,16 @@
 
           nixpkgs.config.allowUnfree = true;
           environment.systemPackages = [
-            pkgs.neovim
+            inputs.neovim-nightly.packages."${pkgs.system}".default
 
             pkgs.bitwarden-desktop
             pkgs.brave
-            pkgs.helium
-            pkgs.keycastr
 
             # ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
             #
             pkgs.ffmpeg
             pkgs.lua
+            pkgs.stylua
             pkgs.nodejs_24
 
             pkgs.spotify
@@ -105,6 +107,8 @@
             pkgs.pgformatter
             pkgs.squawk
             pkgs.sqlfluff
+            pkgs.sqruff
+            pkgs.lazysql
 
             pkgs.tldr
 
@@ -151,7 +155,7 @@
 
             # Python LSP
             pkgs.ruff
-            pkgs.pyright
+            pkgs.basedpyright
 
             # Data tools
             # pkgs.dbt
@@ -235,6 +239,8 @@
             pkgs.fastfetch
             pkgs.atuin
 
+            pkgs.delta # pager for git
+
             pkgs.git
             pkgs.lazygit
             pkgs.tree-sitter
@@ -258,9 +264,16 @@
             pkgs.findutils
             pkgs.file
             pkgs.lf
+            pkgs.grex
+
+            pkgs.lazydocker
+
+            pkgs.renovate
+
+            pkgs.eslint
 
             pkgs.cspell
-            # pkgs.firebase-tools
+            pkgs.firebase-tools
             pkgs.viu
           ];
 
