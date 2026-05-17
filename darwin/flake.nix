@@ -50,8 +50,8 @@
               "nvm"
               "protobuf"
               "java"
-              "fvm"
-              "dart"
+              "opencode"
+              "watch"
             ];
 
             taps = [
@@ -88,10 +88,10 @@
 
           nixpkgs.config.allowUnfree = true;
           environment.systemPackages = [
-            inputs.neovim-nightly.packages."${pkgs.system}".default
+            inputs.neovim-nightly.packages.${pkgs.stdenv.hostPlatform.system}.default
 
             pkgs.bitwarden-desktop
-            pkgs.brave
+            # pkgs.brave
 
             # ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
             #
@@ -100,7 +100,7 @@
             pkgs.stylua
             pkgs.nodejs_24
 
-            pkgs.spotify
+            # pkgs.spotify
 
             pkgs.lefthook
             pkgs.postgresql_17
@@ -159,12 +159,14 @@
 
             # Data tools
             # pkgs.dbt
-            pkgs.parquet-tools
+            # pkgs.parquet-tools
 
             # JS related packages
             pkgs.pnpm
             pkgs.bun
             pkgs.biome
+
+            pkgs.buf
 
             pkgs.mimir
             pkgs.prometheus
@@ -177,6 +179,11 @@
 
             pkgs.ruby
 
+            pkgs.pandoc
+            pkgs.xlsx2csv
+            pkgs.miller
+            pkgs.mupdf-headless
+
             # k8s related cli tools
             pkgs.k9s
             pkgs.kubectl-cnpg
@@ -184,7 +191,7 @@
             pkgs.kubie
             pkgs.kubectl
             pkgs.kubernetes-helm
-            pkgs.argo
+            pkgs.argo-workflows
             pkgs.argocd
             # pkgs.kcl
             pkgs.cmctl
@@ -213,16 +220,16 @@
             # pkgs.opentofu
             pkgs.terraform
 
-            pkgs.opencode
+            # pkgs.opencode
 
             # Security related tools
             pkgs.pass
             pkgs.teller
-            pkgs.vault
-            pkgs.libfido2
-            pkgs.apacheHttpd
+            # pkgs.vault
+            # pkgs.libfido2
+            # pkgs.apacheHttpd
             pkgs.openssl
-            pkgs.nixfmt-rfc-style
+            pkgs.nixfmt
             # Network related tools
             pkgs.httpie
             pkgs.wget
@@ -247,6 +254,7 @@
             pkgs.tokei
             pkgs.stow
             pkgs.eza
+            pkgs.carapace
             pkgs.tree
             pkgs.umoci
             pkgs.direnv
@@ -267,12 +275,16 @@
             pkgs.grex
 
             pkgs.lazydocker
-
+            pkgs.tilt
+            
+            pkgs.texliveSmall
             pkgs.renovate
 
-            pkgs.eslint
+            # pkgs.eslint
+            #
+            pkgs.markdownlint-cli2
 
-            pkgs.cspell
+            # pkgs.cspell
             pkgs.firebase-tools
             pkgs.viu
           ];
@@ -283,6 +295,7 @@
 
           # Enable alternative shell support in nix-darwin.
           programs.zsh.enable = true;
+          programs.direnv.enable = true;
 
           # Set Git commit hash for darwin-version.
           system.configurationRevision = self.rev or self.dirtyRev or null;

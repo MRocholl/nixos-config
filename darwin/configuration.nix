@@ -176,6 +176,8 @@
     pkgs.file
     pkgs.lf
 
+    pkgs.git-lfs
+
   ];
 
   # Necessary for using flakes on this system.
