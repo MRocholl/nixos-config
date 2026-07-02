@@ -319,5 +319,8 @@
       darwinConfigurations."Moritzs-MacBook-Pro" = nix-darwin.lib.darwinSystem {
         modules = [ configuration ];
       };
+      darwinConfigurations."Moritzs-MacBook-Pro-2" = nix-darwin.lib.darwinSystem {
+        modules = [ configuration ];
+      };
     };
 }
