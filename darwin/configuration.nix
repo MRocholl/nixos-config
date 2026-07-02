@@ -5,7 +5,10 @@
 
   environment.variables = {
     EDITOR = "nvim";
+    PNPM_HOME = "/Users/mrocholl/.local/share/pnpm";
   };
+
+  environment.systemPath = [ "/Users/mrocholl/.local/share/pnpm" ];
 
   system.primaryUser = "mrocholl";
 

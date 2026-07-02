@@ -20,6 +20,11 @@
 
 
     hyprland.url = "github:hyprwm/Hyprland";
+
+    hunk = {
+      url = "github:modem-dev/hunk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{

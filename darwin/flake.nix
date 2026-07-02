@@ -11,6 +11,11 @@
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
+
+    hunk = {
+      url = "github:modem-dev/hunk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -20,6 +25,7 @@
       nixpkgs,
       neovim-nightly,
       ghostty,
+      hunk,
     }:
     let
       configuration =
@@ -64,10 +70,6 @@
               "aerospace"
               "gcloud-cli"
               "sf-symbols"
-              {
-                name = "kunkun";
-                greedy = true;
-              }
 
               {
                 name = "hammerspoon";

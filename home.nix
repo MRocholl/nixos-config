@@ -283,7 +283,12 @@
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
+    PNPM_HOME = "${config.home.homeDirectory}/.local/share/pnpm";
   };
+
+  home.sessionPath = [
+    "${config.home.homeDirectory}/.local/share/pnpm"
+  ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
