@@ -92,7 +92,7 @@
           environment.systemPackages = [
             inputs.neovim-nightly.packages.${pkgs.stdenv.hostPlatform.system}.default
 
-            pkgs.bitwarden-desktop
+            # pkgs.bitwarden-desktop
             # pkgs.brave
 
             # ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
