@@ -108,7 +108,7 @@
             pkgs.postgresql_17
             pkgs.pgformatter
             pkgs.squawk
-            pkgs.sqlfluff
+            # pkgs.sqlfluff
             pkgs.sqruff
             pkgs.lazysql
 
