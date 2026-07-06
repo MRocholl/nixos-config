@@ -56,9 +56,18 @@
             ];
 
             taps = [
-              "nikitabobko/tap"
-              "leoafarias/fvm"
-              "dart-lang/dart"
+              {
+                name = "nikitabobko/tap";
+                trusted = true;
+              }
+              {
+                name = "leoafarias/fvm";
+                trusted = true;
+              }
+              {
+                name = "dart-lang/dart";
+                trusted = true;
+              }
             ];
             casks = [
               "1password-cli"
