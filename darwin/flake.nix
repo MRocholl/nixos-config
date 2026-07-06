@@ -200,6 +200,7 @@
             pkgs.xlsx2csv
             pkgs.miller
             pkgs.mupdf-headless
+            pkgs.img2pdf
 
             # k8s related cli tools
             pkgs.k9s
