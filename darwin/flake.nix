@@ -8,10 +8,6 @@
     # Latest neovim
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-    };
-
     hunk = {
       url = "github:modem-dev/hunk";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +20,6 @@
       nix-darwin,
       nixpkgs,
       neovim-nightly,
-      ghostty,
       hunk,
     }:
     let
@@ -95,7 +90,7 @@
             # pkgs.bitwarden-desktop
             # pkgs.brave
 
-            ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
+            pkgs.ghostty-bin
             #
             pkgs.ffmpeg
             pkgs.lua
