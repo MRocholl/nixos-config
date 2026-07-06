@@ -84,6 +84,7 @@
     # Data tools
     # pkgs.dbt
     pkgs.parquet-tools
+    pkgs.img2pdf
 
     # JS related packages
     pkgs.pnpm
