@@ -33,6 +33,15 @@
             EDITOR = "nvim";
           };
 
+          # Route SSH auth for GitLab through the 1Password SSH agent.
+          # macOS /etc/ssh/ssh_config includes /etc/ssh/ssh_config.d/*; this file
+          # sorts first so its IdentityAgent wins. The agent is served by the
+          # 1Password desktop app (enable in Settings > Developer > SSH agent).
+          environment.etc."ssh/ssh_config.d/100-1password.conf".text = ''
+            Host gitlab.com
+              IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+          '';
+
           system.primaryUser = "mrocholl";
 
           security.pam.services.sudo_local.touchIdAuth = true;
@@ -70,6 +79,7 @@
               }
             ];
             casks = [
+              "1password"
               "1password-cli"
               "aerospace"
               "gcloud-cli"
