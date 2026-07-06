@@ -76,10 +76,10 @@
                 greedy = true;
               }
 
-              {
-                name = "ghostty";
-                greedy = true;
-              }
+              # {
+              #   name = "ghostty";
+              #   greedy = true;
+              # }
             ];
 
           };
@@ -95,7 +95,7 @@
             # pkgs.bitwarden-desktop
             # pkgs.brave
 
-            # ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
+            ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
             #
             pkgs.ffmpeg
             pkgs.lua
