@@ -136,6 +136,7 @@
             pkgs.zulu
 
             pkgs.devenv
+            pkgs.mise
             pkgs.zoxide
 
             pkgs.lua
