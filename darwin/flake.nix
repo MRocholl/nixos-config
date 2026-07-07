@@ -65,6 +65,7 @@
               "java"
               "opencode"
               "watch"
+              "git-spice"
             ];
 
             taps = [
