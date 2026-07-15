@@ -133,6 +133,9 @@
 
             pkgs.tldr
 
+            pkgs.oasdiff
+            pkgs.vacuum
+
             pkgs.infracost
 
             pkgs.cocoapods
