@@ -133,8 +133,7 @@
 
             pkgs.tldr
 
-            pkgs.oasdiff
-            pkgs.vacuum
+            pkgs.vacuum-go
 
             pkgs.infracost
 
