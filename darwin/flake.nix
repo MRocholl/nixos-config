@@ -125,6 +125,7 @@
 
             pkgs.lefthook
             pkgs.postgresql_17
+            pkgs.pgadmin4
             pkgs.pgformatter
             pkgs.squawk
             # pkgs.sqlfluff
