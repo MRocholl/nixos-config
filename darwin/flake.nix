@@ -88,6 +88,7 @@
               "aerospace"
               "gcloud-cli"
               "sf-symbols"
+              "pgadmin4"
               "hamed-elfayome/claude-usage/claude-usage-tracker"
 
               {
@@ -125,7 +126,6 @@
 
             pkgs.lefthook
             pkgs.postgresql_17
-            pkgs.pgadmin4-desktopmode
             pkgs.pgformatter
             pkgs.squawk
             # pkgs.sqlfluff
