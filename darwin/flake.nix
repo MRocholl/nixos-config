@@ -174,7 +174,6 @@
             # Python related packages
             pkgs.pipx
             pkgs.uv
-            pkgs.poetry
 
             # Python LSP
             pkgs.ruff
