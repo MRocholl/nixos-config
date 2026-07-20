@@ -30,6 +30,7 @@
     casks = [
       "1password-cli"
       "aerospace"
+      "libreoffice"
 
       {
         name = "hammerspoon";
