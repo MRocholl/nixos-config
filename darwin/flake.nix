@@ -89,6 +89,7 @@
               "gcloud-cli"
               "sf-symbols"
               "pgadmin4"
+              "libreoffice"
               "hamed-elfayome/claude-usage/claude-usage-tracker"
 
               {
