@@ -12,8 +12,6 @@
       url = "github:modem-dev/hunk";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    zennotes.url = "github:ZenNotes/zennotes";
   };
 
   outputs =
@@ -23,7 +21,6 @@
       nixpkgs,
       neovim-nightly,
       hunk,
-      zennotes,
     }:
     let
       configuration =
@@ -314,9 +311,6 @@
             # pkgs.cspell
             pkgs.firebase-tools
             pkgs.viu
-            
-            # ZenNotes
-            inputs.zennotes.packages.${pkgs.stdenv.hostPlatform.system}.default
           ];
 
           # Necessary for using flakes on this system.
