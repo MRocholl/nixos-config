@@ -263,7 +263,6 @@
             pkgs.zsh
             pkgs.zellij
             pkgs.tmux
-            pkgs.fortune
 
             # Common tools
             pkgs.fastfetch

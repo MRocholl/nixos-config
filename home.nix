@@ -139,7 +139,6 @@
     pkgs.ghostty
     pkgs.zellij
     pkgs.tmux
-    pkgs.fortune
     
     # Common tools
     pkgs.neofetch
