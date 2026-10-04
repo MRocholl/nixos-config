@@ -86,7 +86,7 @@
               "gcloud-cli"
               "sf-symbols"
               "pgadmin4"
-              "libreoffice"
+              # "libreoffice"
               "hamed-elfayome/claude-usage/claude-usage-tracker"
 
               {
@@ -152,7 +152,6 @@
             pkgs.zulu
 
             pkgs.devenv
-            pkgs.mise
             pkgs.zoxide
 
             pkgs.lua
