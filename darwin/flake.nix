@@ -107,6 +107,9 @@
           ];
 
           nixpkgs.config.allowUnfree = true;
+          # initdb/postgres resolve share/postgresql and $libdir (lib/)
+          # relative to the profile symlink they're started from
+          environment.pathsToLink = [ "/share/postgresql" "/lib" ];
           environment.systemPackages = [
             inputs.neovim-nightly.packages.${pkgs.stdenv.hostPlatform.system}.default
 
