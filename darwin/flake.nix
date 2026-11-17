@@ -232,7 +232,6 @@
             # pkgs.atlas
             pkgs.hasura-cli
 
-            pkgs.dvc
 
             # S3 and cloud CLIs
             pkgs.s3cmd
